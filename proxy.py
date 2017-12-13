@@ -83,7 +83,7 @@ class HttpsDecryptConnection:
             context.verify_mode = ssl.CERT_REQUIRED
             context.load_verify_locations("cacert.pem")
 
-            self.__server = context.wrap_socket(socket.socket())
+            self.__server = context.wrap_socket(socket.socket(), server_hostname=host)
             self.__server.connect((host, port))
             self.__server.setblocking(0)
 
